@@ -8,7 +8,7 @@ Như bạn đã biết thì SQLite là một cơ sở dữ liệu đơn luồng 
 Chúng ta cần biết về các ưu điểm và nhược điểm của SQLite
 
 #### Ưu điểm.
- * SQLite được viết bằng ngôn ngữ lập trình C thuần. vì vậy nó truy cập ổ đĩa hoặc cơ sở dữ liệu trong bộ nhớ hoặc các tiến trình dữ liệu là nhanh nhất. Hãy thử nghĩ khi bạn sử dụng ổ đĩa SSD.
+ * SQLite được viết bằng ngôn ngữ lập trình C thuần. vì vậy nó truy cập ổ đĩa hoặc cơ sở dữ liệu trong bộ nhớ hoặc các tiến trình dữ liệu là nhanh nhất. Hãy thử nghĩ như khi bạn sử dụng ổ đĩa SSD.
  * SQLite hỗ trợ cả trên bộ nhớ ( hỗ trợ trên Ram ). Trên memory, SQLite có thể nhanh hơn gần gấp đôi. Nếu bạn có thể hiểu vấn đề về phân trang. Nó cũng đủ nhanh rồi.
 * SQLite chỉ có luồng đơn. Vì vậy nguy cơ dữ liệu bị hỏng là thấp nhất.
 * Cơ sở dữ liệu của SQLite chỉ nằm trong 1 file duy nhất. Vì vậy có thể di chuyển cơ sở dữ liệu và truy cập bởi bất cứ nền tảng nào một cách rất dễ dàng. 
@@ -24,11 +24,11 @@ Chúng ta cần biết về các ưu điểm và nhược điểm của SQLite
 
 #### thực hiện việc ghi đa luồng gần như đồng thời
 
-Bây giờ tôi sẽ cố gắng đưa ra một vài trick nhỏ để thực hiện thao tác ghi gần như cùng một thời điểm.
+Bây giờ tôi sẽ cố gắng đưa ra một vài mẹo nhỏ để thực hiện thao tác ghi gần như cùng một thời điểm.
 
 ##### Chú ý: SQLite không bao giờ cho phép bạn hoàn tất ROW LEVEL LOCK. Vì vậy bạn đừng nên phí thời gian để tìm kiếm nó.
 
-Đương nhiên nó có thể tác động tới hiệu năng nếu bạn thực hiện hành động ghi voà phần lớn của bảng. nhưng luồng thứ hai sẽ không phải chờ mất nhiều thời gian để thao tác đầu tiên kết thúc.
+Đương nhiên nó có thể tác động tới hiệu năng nếu bạn thực hiện hành động ghi và phần lớn của bảng. nhưng luồng thứ hai sẽ không phải chờ mất nhiều thời gian để thao tác đầu tiên kết thúc.
 
 ![image](0.jpeg)
 
